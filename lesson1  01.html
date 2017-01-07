@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #outer{
+            width:500px;
+            margin:50px auto;
+            text-align:center;
+        }
+        #inner{
+            width:100px;
+            height:100px;
+            background:black;
+            margin:20px auto;
+        }
+        p{
+            width:100px;
+            height:50px;
+            background:red;
+        }
+    </style>
+    <script src="changeStyle.js"></script>
+</head>
+<body>
+<div id="outer">
+    <input type="button" value="变宽">
+    <input type="button" value="变高">
+    <input type="button" value="变色">
+    <input type="button" value="隐藏">
+    <input type="button" value="重置">
+    <div id="inner"></div>
+</div>
+
+<p width="300px"></p>
+<script>
+    var op=document.getElementsByTagName("p")[0];
+    op.style.border="2px solid yellow";
+    op.style.cssText="";
+    //表明通过设置cssText可以覆盖掉行间以及通过此前js设置的所有的样式，写法跟样式表的写法一样，
+    // 例如{op.style.cssText="width:100px;height:100px;";},但修改不了样式表里的样式
+</script>
+</body>
+</html>

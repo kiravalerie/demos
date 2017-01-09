@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片切换</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        #picswitcher{
+            width:500px;
+            height:400px;
+            margin:0 auto;
+            position:relative;
+            top:100px;
+            background:pink url(pics/loader_ico.gif) no-repeat center center;
+            border-radius:10px;
+        }
+        img{
+            width:400px;
+            height:300px;
+            position:absolute;
+            top:50px;
+            left:50px;
+        }
+        span,p{
+            display:block;
+            width:500px;
+            font-size:16px;
+            text-align:center;
+            height:20px;
+            position:absolute;
+            left:0;
+        }
+        span{
+            top:30px;
+        }
+        p{
+            bottom:30px;
+        }
+        ul{ width:100px;
+            height:14px;
+            position:absolute;
+            left:60px;
+            bottom:60px;
+        }
+        li{
+            width:14px;
+            height:14px;
+            font-size:10px;
+            color:#ccc;
+            margin-right:2px;
+            border-radius:14px;
+            text-align:center;
+            background:#F90;
+            float:left;
+            cursor:pointer;
+            opacity:0.6;
+        }
+        .active{
+            background:#fc6061;
+            color:black;
+            opacity:0.8;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById("picswitcher");
+            var oPic=document.getElementById("pic");
+            var oText1=document.getElementById("text1");
+            var oText2=document.getElementById("text2");
+            var aLi=oDiv.getElementsByTagName("li");
+            var aUrl=["pics/pic1.png","pics/pic2.png","pics/pic3.png","pics/pic4.png","pics/pic5.png","pics/pic6.png"]
+            var aText2=["图片1","图片2","图片3","图片4","图片5","图片6"]
+            var order=0;
+            var timer=setInterval(begin,2000);
+            function begin(){
+                if(order==aLi.length)order=0;
+                oText1.innerHTML=order+1+"/"+aLi.length;
+                oText2.innerHTML=aText2[order];
+                oPic.src=aUrl[order];
+                for(var j=0;j<aLi.length;j++){
+                    aLi[j].className="";
+                }
+                aLi[order].className="active";
+                order++;
+
+            }
+            begin();
+
+            for(var i=0;i<aLi.length;i++){
+                aLi[i].index=i;
+                aLi[i].onmouseover=function(){
+                    order=this.index;
+                    begin();
+                    clearInterval(timer);
+                };
+                aLi[i].onmouseout=function(){
+                    timer=setInterval(begin,2000);
+                }
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+<div id="picswitcher">
+    <img id="pic" src="">
+    <span id="text1">图片序号正在计算中</span>
+    <p id="text2">图片文字正在加载中</p>
+    <ul id="switcher">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #outer{
+            width:550px;
+            height:100px;
+            margin:10px auto;
+        }
+        #outer div{
+            width:100px;
+            height:100px;
+            background:pink;
+            margin-right:10px;
+            float:left;
+        }
+        input{
+            display:block;
+            margin:0 auto;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oOuter=document.getElementById("outer");
+            var aDiv=oOuter.getElementsByTagName("div");
+            var oBtn=document.getElementsByTagName("input")[0];
+            oBtn.onclick=function(){
+                for(var i=0,len=aDiv.length;i<len;i++){
+                    aDiv[i].style.backgroundColor="red";
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div id="outer">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+    </div>
+<input type="button" value="点击使div全部变成红色">
+</body>
+</html>
